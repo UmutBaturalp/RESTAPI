@@ -4,12 +4,14 @@ const db = require("./src/config/Database.js");
 const dotenv = require("dotenv");
 const app = express();
 const Auth = require("./src/routes/auth.js");
+const Post = require("./src/routes/post.js");
 dotenv.config();
 app.use(cors());
 app.use(express.json({ extended: true, limit: "30mb" }));
 app.use(express.urlencoded({ extended: true, limit: "30mb" }));
 
 app.use("/", Auth);
+app.use("/", Post);
 
 app.get("/", (req, res) => {
   res.json({ message: "hello from server" });
